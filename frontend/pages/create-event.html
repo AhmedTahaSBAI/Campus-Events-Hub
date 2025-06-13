@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer un événement - INPT Campus Events</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>
+      <img src="logo-inpt.png" alt="Logo INPT">
+      Campus Events Hub
+    </h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="profile.html">Mon profil</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="create-event-form" class="form-container">
+      <h2>Créer un nouvel événement</h2>
+
+      <label for="event-title">Titre :</label>
+      <input type="text" id="event-title" name="title" placeholder="Nom de l'événement" required>
+
+      <label for="event-category">Catégorie :</label>
+      <select id="event-category" name="category" required>
+        <option value="">-- Choisir une catégorie --</option>
+        <option value="sport">Sport</option>
+        <option value="club">Club</option>
+        <option value="workshop">Atelier</option>
+        <option value="study">Groupe d'étude</option>
+      </select>
+
+      <label for="event-date">Date :</label>
+      <input type="date" id="event-date" name="date" required>
+
+      <label for="event-time">Heure :</label>
+      <input type="time" id="event-time" name="time" required>
+
+      <label for="event-location">Lieu :</label>
+      <input type="text" id="event-location" name="location" placeholder="Ex: Bâtiment A, salle 204" required>
+
+      <label for="event-description">Description :</label>
+      <textarea id="event-description" name="description" rows="5" placeholder="Détaillez ici votre événement..." required></textarea>
+
+      <button type="submit">Publier l'événement</button>
+    </form>
+  </main>
+
+  <script src="js/create-event.js"></script>
+</body>
+</html>

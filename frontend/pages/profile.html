@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Profil - INPT Campus Events</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>    
+      <img src="logo-inpt.png" alt="Logo INPT">
+      Campus Events Hub
+    </h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="create-event.html">Créer un événement</a>
+      <button id="logout-btn">Déconnexion</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile-section">
+      <h2>Mon Profil</h2>
+      <div class="profile-info">
+        <p><strong>Nom :</strong> <span id="user-name">Chargement...</span></p>
+        <p><strong>Email :</strong> <span id="user-email">Chargement...</span></p>
+      </div>
+    </section>
+
+    <section class="user-events">
+      <h2>Mes Événements</h2>
+      <div class="events-list" id="user-events-container">
+        <!-- Événements générés dynamiquement -->
+      </div>
+    </section>
+  </main>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>

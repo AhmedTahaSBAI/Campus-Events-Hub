@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Détails de l'événement - INPT Campus Events</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>
+      <img src="logo-inpt.png" alt="Logo INPT">
+      Campus Events Hub
+    </h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="create-event.html">Créer un événement</a>
+      <a href="profile.html">Mon profil</a>
+    </nav>
+  </header>
+
+  <main>
+    <article class="event-details">
+      <h2 id="event-title">Match de football universitaire</h2>
+      <p class="category" id="event-category">Sport</p>
+      <p class="date" id="event-date">15 juin 2025 - 18:00</p>
+      <p class="location" id="event-location">Stade universitaire</p>
+
+      <div class="description">
+        <h3>Description</h3>
+        <p id="event-description">
+          Match amical entre les facultés de sciences et d'ingénierie. Venez soutenir votre équipe !
+        </p>
+      </div>
+
+      <div class="organizer">
+        <h3>Organisateur</h3>
+        <p id="event-organizer">Club Sportif INPT</p>
+      </div>
+
+      <div class="actions">
+        <button id="edit-event">Modifier</button>
+        <button id="delete-event">Supprimer</button>
+      </div>
+    </article>
+  </main>
+
+  <script src="js/event-details.js"></script>
+</body>
+</html>
