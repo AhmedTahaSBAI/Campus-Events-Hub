@@ -11,9 +11,30 @@ exports.getAllEvents = async (req, res) => {
 
 exports.createEvent = async (req, res) => {
   try {
-    const event = await Event.create(req.body);
+    const { title, description, date, time, location, category } = req.body;
+
+    const event = await Event.create({
+      title,
+      description,
+      date,
+      time,
+      location,
+      category,
+      userId: req.user.id  // ⬅️ Associe le user connecté à l'événement
+    });
+
     res.status(201).json(event);
   } catch (err) {
     res.status(400).json({ error: err.message });
   } 
+};
+exports.getUserEvents = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const events = await Event.findAll({ where: { userId } });
+    res.json(events);
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des événements utilisateur.' });
+  }
 };

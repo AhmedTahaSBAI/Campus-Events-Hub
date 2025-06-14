@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // Import direct
+const sequelize = require('../config/database');
+const bcrypt = require('bcrypt'); // ⬅️ Import manquant
 
 const User = sequelize.define('User', {
   name: { type: DataTypes.STRING, allowNull: false },
@@ -18,5 +19,10 @@ const User = sequelize.define('User', {
     }
   }
 });
+
+// Méthode d’instance pour vérifier le mot de passe
+User.prototype.comparePassword = async function (candidatePassword) {
+  return await bcrypt.compare(candidatePassword, this.password);
+};
 
 module.exports = User;

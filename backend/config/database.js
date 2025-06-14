@@ -12,5 +12,7 @@ sequelize.authenticate()
   .then(() => console.log('✅ Connexion à la DB réussie'))
   .catch(err => console.error('❌ Erreur de connexion à la DB:', err));
 
+sequelize.sync({ alter: true })
+
 // Exportez l'instance sequelize
 module.exports = sequelize; // Export direct (pas besoin de {sequelize})

@@ -1,19 +1,28 @@
-// backend/middleware/authMiddleware.js
+// middlewares/authMiddleware.js
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = process.env.JWT_SECRET || 'votre_cle_secrete';
+const User = require('../models/User');
+const SECRET_KEY = 'votre_cle_secrete'; // Remplace par process.env.SECRET_KEY si tu utilises dotenv
 
-exports.authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
+exports.authenticate = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Token manquant' });
   }
+
+  const token = authHeader.split(' ')[1];
 
   try {
     const decoded = jwt.verify(token, SECRET_KEY);
-    req.userId = decoded.id;
+    const user = await User.findByPk(decoded.id);
+
+    if (!user) {
+      return res.status(401).json({ error: 'Utilisateur introuvable' });
+    }
+
+    req.user = user;
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Invalid token' });
+    return res.status(401).json({ error: 'Token invalide ou expiré' });
   }
 };
