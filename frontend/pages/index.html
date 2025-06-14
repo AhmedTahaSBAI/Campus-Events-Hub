@@ -15,9 +15,9 @@
     </h1>
     <nav>
       <a href="index.html">Accueil</a>
-      <a href="create-event.html">Créer Événement</a>
-      <a href="profile.html">Profil</a>
-      <a href="login.html">Se déconnecter</a>
+      <a href="profile.html" id="profile-link">Mon profil</a>
+      <a href="login.html" id="login-link">Se connecter</a>
+      <button id="logout-button" style="display: none;">Se déconnecter</button>
     </nav>
   </header>
 
@@ -33,29 +33,13 @@
       <input type="date" />
     </section>
 
-    <section class="events-list">
-      <div class="event-card">
-        <h3>Hackathon INPT 2025</h3>
-        <p class="date">📅 20 juin 2025</p>
-        <p class="location">📍 INPT - Amphi Central</p>
-        <a href="event-details.html">Voir les détails →</a>
-      </div>
-
-      <div class="event-card">
-        <h3>Atelier IA et Big Data</h3>
-        <p class="date">📅 25 juin 2025</p>
-        <p class="location">📍 INPT - Salle 101</p>
-        <a href="event-details.html">Voir les détails →</a>
-      </div>
-
-      <div class="event-card">
-        <h3>Concert Étudiant</h3>
-        <p class="date">📅 30 juin 2025</p>
-        <p class="location">📍 INPT - Agora</p>
-        <a href="event-details.html">Voir les détails →</a>
-      </div>
+    <section class="events-container" id="events-container">
+            <!-- Les événements seront injectés ici par JavaScript -->
+            <div class="loading-message">Chargement des événements...</div>
     </section>
   </main>
+   <script src="../js/event.js"></script>
+   <script src="../js/auth-ui.js"></script>
 
 </body>
 </html>

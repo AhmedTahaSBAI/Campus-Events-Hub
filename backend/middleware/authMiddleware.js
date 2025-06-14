@@ -1,9 +1,10 @@
+// backend/middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'votre_cle_secrete';
+const SECRET_KEY = process.env.JWT_SECRET || 'votre_cle_secrete';
 
 exports.authenticate = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
-  
+
   if (!token) {
     return res.status(401).json({ error: 'No token provided' });
   }

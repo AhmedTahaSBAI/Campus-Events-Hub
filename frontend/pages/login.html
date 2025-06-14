@@ -15,28 +15,30 @@
     </h1>
     <nav>
       <a href="index.html">Accueil</a>
-      <a href="register.html">Inscription</a>
+      <a href="profile.html" id="profile-link">Mon profil</a>
+      <a href="login.html" id="login-link">Se connecter</a>
+      <button id="logout-button" style="display: none;">Se déconnecter</button>
     </nav>
   </header>
 
-  <main>
+  <main class="auth-page">
+  <div class="login-container">
+    <h2>Connexion</h2>
+    <div id="alert-message"></div>
+
     <form id="login-form">
-      <h2>Connexion</h2>
-
-      <label for="email">Adresse Email :</label>
-      <input type="email" id="email" name="email" placeholder="votre.email@inpt.ac.ma" required />
-
-      <label for="password">Mot de passe :</label>
-      <input type="password" id="password" name="password" placeholder="••••••••" required />
-
+      <input type="email" id="email" placeholder="Adresse e-mail" required />
+      <input type="password" id="password" placeholder="Mot de passe" required />
       <button type="submit">Se connecter</button>
-
-      <p style="text-align: center; margin-top: 1rem;">
-        Pas encore de compte ? <a href="register.html">S'inscrire</a>
-      </p>
     </form>
-  </main>
 
-  <script src="js/auth.js"></script>
+    <p style="margin-top: 1rem;">
+      Pas encore de compte ? <a href="register.html">S'inscrire</a>
+    </p>
+  </div>
+</main>
+
+  <div id="alert-message" class="alert-box"></div>
+  <script src="../js/auth.js"></script>
 </body>
 </html>

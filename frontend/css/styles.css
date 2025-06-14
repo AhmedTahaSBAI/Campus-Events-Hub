@@ -127,3 +127,112 @@ main {
     flex-direction: column;
   }
 }
+/* LOGIN PAGE STYLING */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 1rem;
+  color: #005aaa;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #005aaa;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #004080;
+}
+
+/* Alert message styling */
+#alert-message {
+  color: red;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+/* REGISTER PAGE STYLE */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* en tenant compte du header */
+  padding: 2rem;
+}
+
+.login-container,
+.register-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-container h2,
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#login-form input,
+#register-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#login-form button,
+#register-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #005aaa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#login-form button:hover,
+#register-form button:hover {
+  background-color: #004b8a;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1rem;
+}

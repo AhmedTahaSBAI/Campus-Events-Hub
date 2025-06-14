@@ -1,4 +1,4 @@
-const { Event } = require('../models/Event');
+const  Event = require('../models/Event');
 
 exports.getAllEvents = async (req, res) => {
   try {
@@ -15,5 +15,5 @@ exports.createEvent = async (req, res) => {
     res.status(201).json(event);
   } catch (err) {
     res.status(400).json({ error: err.message });
-  }
+  } 
 };
