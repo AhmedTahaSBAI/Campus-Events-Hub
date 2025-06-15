@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getAllEvents,
   createEvent,
-  getUserEvents
+  getUserEvents,deleteEvent,
 } = require('../controllers/eventsController');
 
 const { authenticate } = require('../middleware/authMiddleware');
@@ -17,5 +17,6 @@ router.get('/', getAllEvents);
 
 // ✅ Route sécurisée pour créer un événement
 router.post('/', authenticate, createEvent);
+router.delete('/:id', authenticate, deleteEvent);
 
 module.exports = router;

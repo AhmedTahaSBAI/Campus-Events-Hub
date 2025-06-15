@@ -34,13 +34,17 @@ exports.login = async (req, res) => {
 exports.getMe = async (req, res) => {
   try {
     const user = await User.findByPk(req.userId, {
-      attributes: ['id', 'name', 'email'] // on ne retourne pas le mot de passe
+      attributes: ['id', 'name', 'email'] // 🔐 Pas de mot de passe
     });
 
-    if (!user) return res.status(404).json({ error: 'Utilisateur non trouvé' });
+    if (!user) {
+      return res.status(404).json({ error: "Utilisateur introuvable" }); // ✅ Avec return
+    }
 
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur serveur' });
+    return res.json({ user }); // ✅ Ne s’exécute que si user trouvé
+  } catch (error) {
+    console.error('❌ Erreur dans getMe:', error);
+    return res.status(500).json({ error: "Erreur serveur" });
   }
 };
+

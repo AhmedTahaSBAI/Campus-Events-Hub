@@ -1,6 +1,4 @@
-// frontend/js/profile.js
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Vérifier si l'utilisateur est connecté
     const token = localStorage.getItem('token');
     if (!token) {
         alert('Veuillez vous connecter pour accéder à votre profil.');
@@ -8,29 +6,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // 2. Récupérer les données utilisateur
     try {
-        // Récupérer le profil
+        console.log('🔐 Token trouvé dans localStorage:', token);
+
+        // ➤ Requête profil utilisateur
         const userResponse = await fetch('http://localhost:5000/api/auth/me', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
-        
-        if (!userResponse.ok) throw new Error('Erreur de chargement du profil');
-        const user = await userResponse.json();
 
-        // Afficher les infos
+        if (!userResponse.ok) {
+            const errText = await userResponse.text();
+            console.error('❌ Erreur réponse /me:', userResponse.status, errText);
+            throw new Error('Erreur de chargement du profil');
+        }
+
+        console.log('✅ Réponse /me OK');
+        const data = await userResponse.json();
+        console.log('📦 Données reçues de /me:', data);
+
+        const user = data.user || data;
+        console.log('👤 Utilisateur extrait:', user);
+
         document.getElementById('user-name').textContent = user.name;
         document.getElementById('user-email').textContent = user.email;
 
-        // Récupérer les événements de l'utilisateur
-        const eventsResponse = await fetch(`http://localhost:5000/api/events/user/${user.id}`, {
+        // ➤ Requête événements utilisateur
+        const eventsUrl = `http://localhost:5000/api/events/user/${user.id}`;
+        console.log('📡 Appel des événements via:', eventsUrl);
+
+        const eventsResponse = await fetch(eventsUrl, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
-        const events = await eventsResponse.json();
 
-        // Afficher les événements
+        if (!eventsResponse.ok) {
+            const errText = await eventsResponse.text();
+            console.error('❌ Erreur réponse /events:', eventsResponse.status, errText);
+            throw new Error('Erreur lors du chargement des événements');
+        }
+
+        console.log('✅ Réponse /events OK');
+        const events = await eventsResponse.json();
+        console.log('📅 Événements reçus:', events);
+
         const container = document.getElementById('user-events-container');
-        container.innerHTML = events.length > 0 
+        container.innerHTML = events.length > 0
             ? events.map(event => `
                 <div class="event-card">
                     <h3>${event.title}</h3>
@@ -43,34 +62,36 @@ document.addEventListener('DOMContentLoaded', async () => {
             `).join('')
             : '<p>Aucun événement créé.</p>';
 
-        // Gestion déconnexion
         document.getElementById('logout-btn').addEventListener('click', () => {
             localStorage.removeItem('token');
             window.location.href = 'login.html';
         });
 
     } catch (error) {
-        console.error('Erreur:', error);
+        console.error('🚨 Erreur attrapée dans catch :', error.message || error);
+        console.trace();
         alert('Session expirée. Veuillez vous reconnecter.');
         window.location.href = 'login.html';
     }
 });
+// profile.js
+function deleteEvent(eventId) {
+  const token = localStorage.getItem("token");
 
-// Fonction pour supprimer un événement
-async function deleteEvent(eventId) {
-    if (!confirm('Supprimer cet événement ?')) return;
-    
-    try {
-        const response = await fetch(`http://localhost:5000/api/events/${eventId}`, {
-            method: 'DELETE',
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-        });
-        
-        if (response.ok) {
-            alert('Événement supprimé !');
-            location.reload(); // Recharger la page
-        }
-    } catch (error) {
-        console.error('Erreur:', error);
-    }
+  fetch(`http://localhost:5000/api/events/${eventId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Erreur lors de la suppression");
+      }
+      // Recharger les événements ou supprimer l'élément du DOM
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error("❌ Erreur suppression:", error);
+    });
 }

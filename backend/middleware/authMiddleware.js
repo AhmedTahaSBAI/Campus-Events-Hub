@@ -20,7 +20,10 @@ exports.authenticate = async (req, res, next) => {
       return res.status(401).json({ error: 'Utilisateur introuvable' });
     }
 
-    req.user = user;
+    // ✅ Correction ici
+    req.user = user; // Pour accéder à user directement
+    req.userId = user.id; // Pour compatibilité avec tes autres fonctions
+
     next();
   } catch (err) {
     return res.status(401).json({ error: 'Token invalide ou expiré' });

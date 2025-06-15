@@ -11,9 +11,9 @@ const Event = sequelize.define('Event', {
     type: DataTypes.ENUM('sport', 'club', 'workshop', 'study'),
     allowNull: false 
   },
-  userId: { // 🔥 Liaison avec l'utilisateur
+  userId: { //  Liaison avec l'utilisateur
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false ,
   }
 });
 
